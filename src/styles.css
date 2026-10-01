@@ -1,0 +1,100 @@
+@import "@fontsource/manrope/cyrillic-400.css";
+@import "@fontsource/manrope/cyrillic-500.css";
+@import "@fontsource/manrope/cyrillic-600.css";
+@import "@fontsource/manrope/cyrillic-700.css";
+@import "@fontsource/manrope/cyrillic-800.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-500.css";
+@import "@fontsource/manrope/latin-600.css";
+@import "@fontsource/manrope/latin-700.css";
+@import "@fontsource/manrope/latin-800.css";
+@import "@fontsource/unbounded/cyrillic-500.css";
+@import "@fontsource/unbounded/cyrillic-700.css";
+@import "@fontsource/unbounded/latin-500.css";
+@import "@fontsource/unbounded/latin-700.css";
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #101010;
+  --color-ink-2: #1a1a1a;
+  --color-panel: #141414;
+  --color-lime: #d6ff00;
+  --color-violet: #6d28d9;
+  --color-paper: #f6f6f1;
+  --color-fg: #f4f4ef;
+  --color-muted: #a1a196;
+  --color-line: #2c2c2c;
+  --color-loss: #e11d48;
+  --color-gain: #5b21b6;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --font-display: "Unbounded", "Manrope", sans-serif;
+  --shadow-stamp-lime: 6px 6px 0 0 var(--color-lime);
+  --shadow-stamp-violet: 8px 8px 0 0 var(--color-violet);
+  --shadow-stamp-ink: 6px 6px 0 0 #000000;
+  --radius-card: 2px;
+}
+
+@layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-ink);
+    color: var(--color-fg);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
+}
+
+@utility hatch {
+  background: repeating-linear-gradient(
+    -58deg,
+    var(--color-lime) 0 7px,
+    transparent 7px 14px
+  );
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility slide-in {
+  animation: rise 220ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-in {
+    animation: none;
+  }
+}
+
+@media print {
+  body.print-decl * {
+    visibility: hidden;
+  }
+  body.print-decl #decl-sheet,
+  body.print-decl #decl-sheet * {
+    visibility: visible;
+  }
+  body.print-decl #decl-sheet {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    box-shadow: none !important;
+  }
+}
